@@ -3,14 +3,10 @@ type OnceFn = (...args: JSONValue[]) => JSONValue | undefined
 
 function once(fn: Function): OnceFn {
     let call = false;
-
     return function (...args) {
         if (!call) {
-            const result = fn(...args)
             call = !call
-            return result
-        } else {
-            return undefined
+            return fn(...args)
         }
     };
 }
